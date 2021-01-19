@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         self.tabelaFilmes.dataSource = self
         importaListaDeFilmes()
+        setupAccessibility()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -34,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             case .success:
                 
                 if let resposta = response.result.value as? Dictionary<String, Any> {
-                    guard let filmesLista = resposta["results"] as? Array<Dictionary<String, Any>> else {return}
+                    guard (resposta["results"] as? Array<Dictionary<String, Any>>) != nil else {return}
                 }
                 
                 break
